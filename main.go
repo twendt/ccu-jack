@@ -96,6 +96,7 @@ func message() {
 		log.Info("  HTTP port: ", cfg.HTTP.Port)
 		log.Info("  HTTPS port: ", cfg.HTTP.PortTLS)
 		log.Info("  CORS origins: ", strings.Join(cfg.HTTP.CORSOrigins, ","))
+		log.Info("  BINRPC Port: ", cfg.BINRPC.Port)
 		log.Info("  MQTT port: ", cfg.MQTT.Port)
 		log.Info("  Secure MQTT port: ", cfg.MQTT.PortTLS)
 		log.Info("  CCU address: ", cfg.CCU.Address)
@@ -227,6 +228,8 @@ func startup(serveErr chan<- error) {
 			Receiver: mqttReceiver,
 			// full URL of the DefaultServeMux for callbacks
 			ServerURL: "http://" + cfg.Host.Address + ":" + strconv.Itoa(cfg.HTTP.Port),
+			// full URL of TCP Server for BINRPC callbacks
+			BinRPCURL: "xmlrpc_bin://" + cfg.Host.Address + ":" + strconv.Itoa(cfg.BINRPC.Port),
 		}
 
 		// start ReGa DOM explorer

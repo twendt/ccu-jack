@@ -14,6 +14,7 @@ type Config struct {
 	Host    Host
 	Logging Logging
 	HTTP    HTTP
+	BINRPC  BINRPC
 	MQTT    MQTT
 	Users   map[string]*User /* Identifier is key. */
 }
@@ -42,6 +43,11 @@ type HTTP struct {
 	Port        int
 	PortTLS     int
 	CORSOrigins []string
+}
+
+// BINRPC configuration
+type BINRPC struct {
+	Port int
 }
 
 // MQTT configuration
